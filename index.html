@@ -36,64 +36,25 @@
             }
         }
     </script>
-
+    
     <style>
-        /* Estilos personalizados y animaciones */
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
-            transition: background 0.8s ease;
-        }
+  /* Fondo por defecto (para Celulares y pantallas pequeñas) */
+  body {
+    background-image: url('./fondo-celu.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Mantiene el fondo fijo al hacer scroll */
+    min-height: 100vh;
+  }
 
-        /* Gradientes del fondo interactivo */
-        .bg-theme-sunset {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
-        }
-        .bg-theme-romantic {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-        }
-        .bg-theme-starlight {
-            background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
-            color: #ffffff;
-        }
-        .bg-theme-lavender {
-            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
-        }
-
-        /* Efecto tarjeta 3D Flip para razones */
-        .perspective-1000 {
-            perspective: 1000px;
-        }
-        .transform-style-3d {
-            transform-style: preserve-3d;
-        }
-        .backface-hidden {
-            backface-visibility: hidden;
-        }
-        .rotate-y-180 {
-            transform: rotateY(180deg);
-        }
-
-        /* Animación suave de apertura de regalo */
-        @keyframes floatAnim {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(2deg); }
-        }
-        .animate-float {
-            animation: floatAnim 4s ease-in-out infinite;
-        }
-
-        /* Canvas estático superpuesto */
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-    </style>
+  /* Fondo para Pantallas Medianas y Grandes (Computadores / Laptops) */
+  @media (min-width: 768px) {
+    body {
+      background-image: url('./fondo-compu.png');
+    }
+  }
+</style>
 </head>
 <body class="bg-theme-sunset min-h-full flex flex-col justify-between text-slate-800 transition-colors duration-500">
 
