@@ -27,6 +27,13 @@
     </script>
     
     <style>
+        /* Desactivar selección de texto en toda la página web */
+        * {
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: None; /* Standard syntax */
+        }
+
         /* Quita márgenes y oculta barra de scroll manteniendo el desplazamiento */
         html, body {
             margin: 0 !important;
@@ -127,12 +134,12 @@
 
                     <!-- Vista Expandida Interactiva (Oculta al inicio) -->
                     <div id="song-card-expanded" class="hidden space-y-4 text-center animate-fade-in">
-                        <!-- Gif en loop -->
+                        <!-- Gif con truco de recarga en bucle infinito -->
                         <div class="flex justify-center">
-                            <img src="./pompom-besos.gif" alt="Pompompurin besos" class="w-24 h-24 object-contain rounded-xl shadow-md bg-white/20 p-1">
+                            <img id="gif-pompom" src="./pompom-besos.gif" alt="Pompompurin besos" class="w-24 h-24 object-contain rounded-xl shadow-md bg-white/20 p-1">
                         </div>
 
-                        <!-- Título con tipografía más simple y limpia -->
+                        <!-- Título con tipografía simple -->
                         <h3 class="font-sans font-bold text-xl text-white">Axel Fiks – Niño Amor</h3>
                         <p class="text-xs sm:text-sm font-light leading-relaxed">
                             No veo mejor forma de decirte las cosas que con una canción. Espero que esta melodía se haga tan especial para ti como tú lo eres para mí.
@@ -207,11 +214,12 @@
     <script>
         document.getElementById('year').innerText = new Date().getFullYear();
 
-        // Función para expandir/contraer la tarjeta de la canción
+        // Función para expandir/contraer la tarjeta de la canción con bucle forzado para el gif
         function toggleSongCard() {
             const card = document.getElementById('card-song');
             const front = document.getElementById('song-card-front');
             const expanded = document.getElementById('song-card-expanded');
+            const gifImg = document.getElementById('gif-pompom');
 
             if (front.classList.contains('hidden')) {
                 expanded.classList.add('hidden');
@@ -221,6 +229,10 @@
                 front.classList.add('hidden');
                 expanded.classList.remove('hidden');
                 card.classList.add('h-auto');
+                
+                // Truco para reiniciar y forzar el loop infinito del gif al abrir
+                const currentSrc = gifImg.src.split('?')[0];
+                gifImg.src = currentSrc + '?t=' + new Date().getTime();
             }
         }
 
@@ -312,7 +324,7 @@
             requestAnimationFrame(animateParticles);
         }
         
-        function createHeartDropBurst() {
+        function createHeartBurst() {
             for (let i = 0; i < 15; i++) {
                 const p = new HeartParticle();
                 p.y = canvas.height / 2;
