@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Te quiero ✨</title>
-    <!-- Tailwind CSS CDN para un diseño moderno y rápido -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome para Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -20,17 +20,6 @@
                     fontFamily: {
                         romantic: ['"Dancing Script"', 'cursive'],
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
-                    colors: {
-                        romantic: {
-                            50: '#fff1f2',
-                            100: '#ffe4e6',
-                            200: '#fecdd3',
-                            400: '#fb7185',
-                            500: '#f43f5e',
-                            600: '#e11d48',
-                            900: '#881337',
-                        }
                     }
                 }
             }
@@ -38,61 +27,70 @@
     </script>
     
     <style>
-        /* 1. Quita espacios vacíos arriba/abajo y oculta la barra de scroll */
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    scrollbar-width: none; /* Oculta la barra en Firefox */
-    -ms-overflow-style: none; /* Oculta la barra en IE/Edge */
-  }
+        /* Quita márgenes y elimina la barra de scroll visual manteniendo el desplazamiento */
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100%;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
 
-  /* Oculta la barra de scroll en Chrome, Safari y celulares */
-  html::-webkit-scrollbar,
-  body::-webkit-scrollbar {
-    display: none;
-  }
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
 
-  /* 2. Fondo para Celulares y pantallas pequeñas */
-  body {
-    background-image: url('./fondo-celu.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    min-height: 100vh;
-  }
+        /* Fondo para Celulares y pantallas pequeñas */
+        body {
+            background-image: url('./fondo-celu.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
 
-  /* 3. Fondo para Computadores / Laptops */
-  @media (min-width: 768px) {
-    body {
-      background-image: url('./fondo-compu.png');
-    }
-  }
-</style>
+        /* Fondo para Computadores / Laptops con doble 'u' (fondo-compuu.png) */
+        @media (min-width: 768px) {
+            body {
+                background-image: url('./fondo-compuu.png');
+            }
+        }
+
+        /* Canvas fijado al fondo sin empujar el contenido */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-10: 1;
+        }
+    </style>
 </head>
-<body class="bg-theme-sunset min-h-full flex flex-col justify-between text-slate-800 transition-colors duration-500">
+<body class="min-h-full flex flex-col justify-between text-slate-800">
 
-    <!-- Canvas para corazones/estrellas flotantes -->
+    <!-- Canvas para corazones flotantes (fijado en el fondo) -->
     <canvas id="particles-canvas"></canvas>
 
     <!-- Contenido Principal -->
     <div class="relative z-10 flex-grow">
         
-        
-        <!-- Header superior simplificado -->
+        <!-- Header superior con el texto actualizado y buena mayúscula -->
         <header class="max-w-4xl mx-auto p-4 flex justify-center sm:justify-start items-center">
-            <div class="flex items-center space-x-2 bg-white/40 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/60 shadow-sm">
+            <div class="flex items-center space-x-2 bg-white/50 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/70 shadow-sm">
                 <i class="fa-solid fa-heart text-pink-500 text-lg animate-pulse"></i>
                 <span class="font-romantic text-lg sm:text-xl font-bold tracking-wide text-slate-700">
-                    si lees esto me debes un besito
+                    Si lees esto, me debes un besito
                 </span>
             </div>
         </header>
         
         <!-- Hero Section / Presentación -->
-        <section class="max-w-3xl mx-auto px-4 pt-8 pb-8 text-center">
-            <!-- Foto de perfil o avatar personalizable -->
+        <section class="max-w-3xl mx-auto px-4 pt-4 pb-8 text-center">
+            <!-- Foto de perfil -->
             <div class="relative inline-block mb-6 animate-float">
                 <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white shadow-xl mx-auto">
                     <img id="hero-img" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80" 
@@ -117,7 +115,7 @@
         <div id="botones-contenedor" class="flex flex-wrap justify-center gap-4 mb-10 max-w-3xl mx-auto px-4">
         </div>
 
-        <!-- Tarjetas Interactivas: Razones por las que eres especial -->
+        <!-- Tarjetas Interactivas -->
         <section class="max-w-3xl mx-auto px-4 mb-14">
             <h2 class="text-center font-romantic text-3xl font-bold text-slate-800 mb-6">
                 A Quesito también lo quiero ✨
@@ -127,13 +125,11 @@
                 <!-- Tarjeta 1 -->
                 <div class="perspective-1000 h-48 cursor-pointer group" onclick="flipCard(this)">
                     <div class="relative w-full h-full duration-500 transform-style-3d group-hover:shadow-2xl rounded-2xl">
-                        <!-- Frente -->
                         <div class="absolute w-full h-full bg-white/60 backdrop-blur-md border border-white/80 rounded-2xl p-6 flex flex-col items-center justify-center text-center backface-hidden shadow-lg">
                             <i class="fa-solid fa-face-smile-beam text-3xl text-pink-500 mb-3"></i>
                             <h3 class="font-bold text-slate-700">Razón #1</h3>
                             <p class="text-xs text-slate-500 mt-1">Haz clic para voltear 🔄</p>
                         </div>
-                        <!-- Atrás -->
                         <div class="absolute w-full h-full bg-pink-500 text-white rounded-2xl p-6 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden shadow-lg">
                             <p class="text-sm font-medium">Tu sonrisa ilumina cualquier día gris por más difícil que parezca.</p>
                         </div>
@@ -143,13 +139,11 @@
                 <!-- Tarjeta 2 -->
                 <div class="perspective-1000 h-48 cursor-pointer group" onclick="flipCard(this)">
                     <div class="relative w-full h-full duration-500 transform-style-3d group-hover:shadow-2xl rounded-2xl">
-                        <!-- Frente -->
                         <div class="absolute w-full h-full bg-white/60 backdrop-blur-md border border-white/80 rounded-2xl p-6 flex flex-col items-center justify-center text-center backface-hidden shadow-lg">
                             <i class="fa-solid fa-mug-hot text-3xl text-pink-500 mb-3"></i>
                             <h3 class="font-bold text-slate-700">Razón #2</h3>
                             <p class="text-xs text-slate-500 mt-1">Haz clic para voltear 🔄</p>
                         </div>
-                        <!-- Atrás -->
                         <div class="absolute w-full h-full bg-pink-500 text-white rounded-2xl p-6 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden shadow-lg">
                             <p class="text-sm font-medium">Tu forma de escuchar y dar los mejores abrazos del mundo.</p>
                         </div>
@@ -159,178 +153,9 @@
                 <!-- Tarjeta 3 -->
                 <div class="perspective-1000 h-48 cursor-pointer group" onclick="flipCard(this)">
                     <div class="relative w-full h-full duration-500 transform-style-3d group-hover:shadow-2xl rounded-2xl">
-                        <!-- Frente -->
                         <div class="absolute w-full h-full bg-white/60 backdrop-blur-md border border-white/80 rounded-2xl p-6 flex flex-col items-center justify-center text-center backface-hidden shadow-lg">
                             <i class="fa-solid fa-star text-3xl text-pink-500 mb-3"></i>
                             <h3 class="font-bold text-slate-700">Razón #3</h3>
                             <p class="text-xs text-slate-500 mt-1">Haz clic para voltear 🔄</p>
                         </div>
-                        <!-- Atrás -->
-                        <div class="absolute w-full h-full bg-pink-500 text-white rounded-2xl p-6 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden shadow-lg">
-                            <p class="text-sm font-medium">Simplemente por ser exactamente quien eres cuando estás conmigo.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-        
-        <!-- Caja de Regalo Interactiva (Revela una sorpresa) -->
-        <section class="max-w-xl mx-auto px-4 mb-16 text-center">
-            <div class="bg-white/40 backdrop-blur-md border border-white/60 rounded-3xl p-8 shadow-xl">
-                <h2 class="font-romantic text-3xl font-bold text-slate-800 mb-2">Una Sorpresa Para Ti</h2>
-                <p class="text-xs text-slate-600 mb-6">Toca para abrir</p>
-
-                <!-- Icono de Caja de Regalo (Color Azul) -->
-                <div id="gift-box" onclick="openGift()" class="cursor-pointer inline-block transition-transform duration-300 hover:scale-110 active:scale-95">
-                    <div class="w-24 h-24 bg-sky-500 rounded-2xl flex items-center justify-center shadow-lg relative mx-auto border-2 border-sky-300">
-                        <i class="fa-solid fa-gift text-white text-5xl"></i>
-                    </div>
-                </div>
-
-                <!-- Revelación del Regalo (Sin emojis) -->
-                <div id="gift-reveal" class="hidden mt-6 space-y-4 animate-fade-in">
-                    <div class="bg-white/80 p-6 rounded-2xl border border-sky-200 shadow-inner">
-                        <p class="font-romantic text-2xl text-sky-600 mb-2 font-bold">¡Vale por 1 millón de besitos!</p>
-                        <p class="text-slate-600 text-sm">Válido hasta el 31/12/2026</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Footer sencillo -->
-    <footer class="relative z-10 text-center py-6 text-xs text-slate-500 border-t border-white/20">
-        <p>Hecho con mucho amor especialmente para ti
-    </footer>
-
-    <!-- Scripts con la lógica interactiva -->
-    <script>
-        // Set año actual en footer
-        document.getElementById('year').innerText = new Date().getFullYear();
-
-        // 2. LÓGICA TARJETAS FLIP (RAZONES)
-        function flipCard(card) {
-            const inner = card.querySelector('.transform-style-3d');
-            inner.classList.toggle('rotate-y-180');
-        }
-
-        // 3. LÓGICA DE REGALO SORPRESA
-        function openGift() {
-            const giftBox = document.getElementById('gift-box');
-            const giftReveal = document.getElementById('gift-reveal');
-
-            giftBox.classList.add('animate-bounce');
-            setTimeout(() => {
-                giftBox.classList.add('hidden');
-                giftReveal.classList.remove('hidden');
-                createHeartBurst(); // Efecto especial al abrir
-            }, 600);
-        }
-
-        // 4. CAMBIADOR DE TEMAS / FONDOS
-        function changeTheme(themeName) {
-            const body = document.body;
-            body.className = "min-h-full flex flex-col justify-between transition-colors duration-700 ";
-            
-            if (themeName === 'sunset') {
-                body.classList.add('bg-theme-sunset', 'text-slate-800');
-            } else if (themeName === 'romantic') {
-                body.classList.add('bg-theme-romantic', 'text-slate-800');
-            } else if (themeName === 'lavender') {
-                body.classList.add('bg-theme-lavender', 'text-slate-800');
-            } else if (themeName === 'starlight') {
-                body.classList.add('bg-theme-starlight', 'text-white');
-            }
-        }
-
-        // 5. FONDO ANIMADO DE CORAZONES/ESTRELLAS EN CANVAS
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        const particles = [];
-        const particleCount = 25;
-
-        class HeartParticle {
-            constructor() {
-                this.reset();
-            }
-
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = canvas.height + Math.random() * 100;
-                this.size = Math.random() * 12 + 8;
-                this.speedY = Math.random() * 1 + 0.5;
-                this.opacity = Math.random() * 0.5 + 0.3;
-                this.angle = Math.random() * 360;
-                this.spin = Math.random() * 0.02 - 0.01;
-            }
-
-            update() {
-                this.y -= this.speedY;
-                this.angle += this.spin;
-                if (this.y < -20) {
-                    this.reset();
-                }
-            }
-
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.angle);
-                ctx.globalAlpha = this.opacity;
-                ctx.fillStyle = "#f43f5e";
-                
-                // Dibujar forma de corazón simplificada
-                ctx.beginPath();
-                const topCurveHeight = this.size * 0.3;
-                ctx.moveTo(0, topCurveHeight);
-                ctx.bezierCurveTo(0, 0, -this.size / 2, 0, -this.size / 2, topCurveHeight);
-                ctx.bezierCurveTo(-this.size / 2, (this.size + topCurveHeight) / 2, 0, this.size, 0, this.size);
-                ctx.bezierCurveTo(0, this.size, this.size / 2, (this.size + topCurveHeight) / 2, this.size / 2, topCurveHeight);
-                ctx.bezierCurveTo(this.size / 2, 0, 0, 0, 0, topCurveHeight);
-                ctx.closePath();
-                ctx.fill();
-                
-                ctx.restore();
-            }
-        }
-
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new HeartParticle());
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-            requestAnimationFrame(animateParticles);
-        }
-        
-        // Ráfaga extra de corazones al abrir el regalo
-        function createHeartBurst() {
-            for (let i = 0; i < 15; i++) {
-                const p = new HeartParticle();
-                p.y = canvas.height / 2;
-                p.x = canvas.width / 2;
-                p.speedY = (Math.random() - 0.5) * 5;
-                particles.push(p);
-            }
-        }
-
-        // Iniciar animación al cargar la ventana
-        window.onload = function() {
-            animateParticles();
-        };
-    </script>
-</body>
-</html>
+                        <div class="absolute w-full h
