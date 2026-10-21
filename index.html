@@ -27,14 +27,14 @@
     </script>
     
     <style>
-        /* Desactivar selección de texto en toda la página web */
+        /* Desactivar selección de texto en toda la página */
         * {
-            -webkit-user-select: none; /* Safari */
-            -ms-user-select: none; /* IE 10 and IE 11 */
-            user-select: None; /* Standard syntax */
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
-        /* Quita márgenes y oculta barra de scroll manteniendo el desplazamiento */
+        /* Quita márgenes y oculta barra de scroll */
         html, body {
             margin: 0 !important;
             padding: 0 !important;
@@ -65,6 +65,16 @@
             }
         }
 
+        /* Sombra / Borde blanco alrededor del texto para máxima legibilidad sobre el fondo */
+        .text-outline-white {
+            text-shadow: 
+                2px  2px 0px #ffffff,
+               -2px -2px 0px #ffffff,
+                2px -2px 0px #ffffff,
+               -2px  2px 0px #ffffff,
+                0px  2px 4px rgba(255, 255, 255, 0.9);
+        }
+
         /* Canvas fijado al fondo */
         #particles-canvas {
             position: fixed;
@@ -87,9 +97,9 @@
         
         <!-- Header superior -->
         <header class="max-w-4xl mx-auto p-4 flex justify-center sm:justify-start items-center">
-            <div class="flex items-center space-x-2 bg-white/50 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/70 shadow-sm">
+            <div class="flex items-center space-x-2 bg-white/70 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/80 shadow-md">
                 <i class="fa-solid fa-heart text-pink-500 text-lg animate-pulse"></i>
-                <span class="font-romantic text-lg sm:text-xl font-bold tracking-wide text-slate-700">
+                <span class="font-romantic text-lg sm:text-xl font-bold tracking-wide text-slate-800">
                     Si lees esto, me debes un besito
                 </span>
             </div>
@@ -97,9 +107,10 @@
         
         <!-- Hero Section -->
         <section class="max-w-3xl mx-auto px-4 pt-4 pb-8 text-center">
+            <!-- Foto del círculo (circulito.png) -->
             <div class="relative inline-block mb-6 animate-float">
-                <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white shadow-xl mx-auto">
-                    <img id="hero-img" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80" 
+                <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white shadow-xl mx-auto bg-white/50">
+                    <img id="hero-img" src="./circulito.png" 
                          alt="Foto especial" 
                          class="w-full h-full object-cover">
                 </div>
@@ -108,17 +119,22 @@
                 </div>
             </div>
 
-            <h1 class="font-romantic text-4xl sm:text-6xl font-bold text-slate-800 mb-3 drop-shadow-sm" id="hero-title">
+            <!-- Título Principal con contorno blanco -->
+            <h1 class="font-romantic text-4xl sm:text-6xl font-bold text-slate-900 mb-4 text-outline-white" id="hero-title">
                 Con mucho cariño, mi querida milita ❤️
             </h1>
-            <p class="text-slate-600 max-w-lg mx-auto text-sm sm:text-base font-normal leading-relaxed mb-6" id="hero-subtitle">
-                Hice este pequeño espacio para que nunca olvides lo mucho que te quiero y significas para mí. Estoy muy agradecido de que esto te pertenezca a ti y sólo a ti.
-            </p>
+
+            <!-- Párrafo descriptivo con fondo de vidrio transparente para facilitar la lectura -->
+            <div class="max-w-lg mx-auto bg-white/60 backdrop-blur-md p-4 rounded-2xl border border-white/80 shadow-sm mb-6">
+                <p class="text-slate-800 text-sm sm:text-base font-medium leading-relaxed" id="hero-subtitle">
+                    Hice este pequeño espacio para que nunca olvides lo mucho que te quiero y significas para mí. Estoy muy agradecido de que esto te pertenezca a ti y sólo a ti.
+                </p>
+            </div>
         </section>
 
         <!-- Tarjetas Interactivas -->
         <section class="max-w-3xl mx-auto px-4 mb-14">
-            <h2 class="text-center font-romantic text-3xl font-bold text-slate-800 mb-6">
+            <h2 class="text-center font-romantic text-3xl sm:text-4xl font-bold text-slate-900 mb-6 text-outline-white">
                 A Quesito también lo quiero ✨
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -132,20 +148,17 @@
                         <p class="text-xs opacity-90 mt-1">Presiona y descubre esta hermosa canción para ti</p>
                     </div>
 
-                    <!-- Vista Expandida Interactiva (Oculta al inicio) -->
+                    <!-- Vista Expandida Interactiva -->
                     <div id="song-card-expanded" class="hidden space-y-4 text-center animate-fade-in">
-                        <!-- Gif con truco de recarga en bucle infinito -->
                         <div class="flex justify-center">
                             <img id="gif-pompom" src="./pompom-besos.gif" alt="Pompompurin besos" class="w-24 h-24 object-contain rounded-xl shadow-md bg-white/20 p-1">
                         </div>
 
-                        <!-- Título con tipografía simple -->
                         <h3 class="font-sans font-bold text-xl text-white">Axel Fiks – Niño Amor</h3>
                         <p class="text-xs sm:text-sm font-light leading-relaxed">
                             No veo mejor forma de decirte las cosas que con una canción. Espero que esta melodía se haga tan especial para ti como tú lo eres para mí.
                         </p>
 
-                        <!-- Reproductor de YouTube -->
                         <div class="relative w-full pt-[56.25%] rounded-xl overflow-hidden shadow-md">
                             <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/rxbQEWEGDCU" title="AXEL FIKS - NIÑO AMOR" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
@@ -155,188 +168,7 @@
                 <!-- Tarjeta 2 (Normal) -->
                 <div class="perspective-1000 h-48 cursor-pointer group" onclick="flipCard(this)">
                     <div class="relative w-full h-full duration-500 transform-style-3d group-hover:shadow-2xl rounded-2xl">
-                        <div class="absolute w-full h-full bg-white/60 backdrop-blur-md border border-white/80 rounded-2xl p-6 flex flex-col items-center justify-center text-center backface-hidden shadow-lg">
+                        <div class="absolute w-full h-full bg-white/70 backdrop-blur-md border border-white/80 rounded-2xl p-6 flex flex-col items-center justify-center text-center backface-hidden shadow-lg">
                             <i class="fa-solid fa-mug-hot text-3xl text-pink-500 mb-3"></i>
-                            <h3 class="font-bold text-slate-700">Razón #2</h3>
-                            <p class="text-xs text-slate-500 mt-1">Haz clic para voltear 🔄</p>
-                        </div>
-                        <div class="absolute w-full h-full bg-pink-500 text-white rounded-2xl p-6 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden shadow-lg">
-                            <p class="text-sm font-medium">Tu forma de escuchar y dar los mejores abrazos del mundo.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tarjeta 3 (Normal) -->
-                <div class="perspective-1000 h-48 cursor-pointer group" onclick="flipCard(this)">
-                    <div class="relative w-full h-full duration-500 transform-style-3d group-hover:shadow-2xl rounded-2xl">
-                        <div class="absolute w-full h-full bg-white/60 backdrop-blur-md border border-white/80 rounded-2xl p-6 flex flex-col items-center justify-center text-center backface-hidden shadow-lg">
-                            <i class="fa-solid fa-star text-3xl text-pink-500 mb-3"></i>
-                            <h3 class="font-bold text-slate-700">Razón #3</h3>
-                            <p class="text-xs text-slate-500 mt-1">Haz clic para voltear 🔄</p>
-                        </div>
-                        <div class="absolute w-full h-full bg-pink-500 text-white rounded-2xl p-6 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden shadow-lg">
-                            <p class="text-sm font-medium">Simplemente por ser exactamente quien eres cuando estás conmigo.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-        
-        <!-- Caja de Regalo Interactiva -->
-        <section class="max-w-xl mx-auto px-4 mb-16 text-center">
-            <div class="bg-white/40 backdrop-blur-md border border-white/60 rounded-3xl p-8 shadow-xl">
-                <h2 class="font-romantic text-3xl font-bold text-slate-800 mb-2">Una Sorpresa Para Ti</h2>
-                <p class="text-xs text-slate-600 mb-6">Toca para abrir</p>
-
-                <div id="gift-box" onclick="openGift()" class="cursor-pointer inline-block transition-transform duration-300 hover:scale-110 active:scale-95">
-                    <div class="w-24 h-24 bg-sky-500 rounded-2xl flex items-center justify-center shadow-lg relative mx-auto border-2 border-sky-300">
-                        <i class="fa-solid fa-gift text-white text-5xl"></i>
-                    </div>
-                </div>
-
-                <div id="gift-reveal" class="hidden mt-6 space-y-4 animate-fade-in">
-                    <div class="bg-white/80 p-6 rounded-2xl border border-sky-200 shadow-inner">
-                        <p class="font-romantic text-2xl text-sky-600 mb-2 font-bold">¡Vale por 1 millón de besitos!</p>
-                        <p class="text-slate-600 text-sm">Válido hasta el 31/12/2026</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Footer sencillo -->
-    <footer class="relative z-10 text-center py-6 text-xs text-slate-500 border-t border-white/20">
-        <p>Hecho con mucho amor especialmente para ti • <span id="year"></span></p>
-    </footer>
-
-    <!-- Scripts -->
-    <script>
-        document.getElementById('year').innerText = new Date().getFullYear();
-
-        // Función para expandir/contraer la tarjeta de la canción con bucle forzado para el gif
-        function toggleSongCard() {
-            const card = document.getElementById('card-song');
-            const front = document.getElementById('song-card-front');
-            const expanded = document.getElementById('song-card-expanded');
-            const gifImg = document.getElementById('gif-pompom');
-
-            if (front.classList.contains('hidden')) {
-                expanded.classList.add('hidden');
-                front.classList.remove('hidden');
-                card.classList.remove('h-auto');
-            } else {
-                front.classList.add('hidden');
-                expanded.classList.remove('hidden');
-                card.classList.add('h-auto');
-                
-                // Truco para reiniciar y forzar el loop infinito del gif al abrir
-                const currentSrc = gifImg.src.split('?')[0];
-                gifImg.src = currentSrc + '?t=' + new Date().getTime();
-            }
-        }
-
-        function flipCard(card) {
-            const inner = card.querySelector('.transform-style-3d');
-            if (inner) inner.classList.toggle('rotate-y-180');
-        }
-
-        function openGift() {
-            const giftBox = document.getElementById('gift-box');
-            const giftReveal = document.getElementById('gift-reveal');
-
-            giftBox.classList.add('animate-bounce');
-            setTimeout(() => {
-                giftBox.classList.add('hidden');
-                giftReveal.classList.remove('hidden');
-                createHeartBurst();
-            }, 600);
-        }
-
-        /* Animación de Corazones Flotantes */
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        const particles = [];
-        const particleCount = 25;
-
-        class HeartParticle {
-            constructor() {
-                this.reset();
-            }
-
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = canvas.height + Math.random() * 100;
-                this.size = Math.random() * 12 + 8;
-                this.speedY = Math.random() * 1 + 0.5;
-                this.opacity = Math.random() * 0.5 + 0.3;
-                this.angle = Math.random() * 360;
-                this.spin = Math.random() * 0.02 - 0.01;
-            }
-
-            update() {
-                this.y -= this.speedY;
-                this.angle += this.spin;
-                if (this.y < -20) {
-                    this.reset();
-                }
-            }
-
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.angle);
-                ctx.globalAlpha = this.opacity;
-                ctx.fillStyle = "#f43f5e";
-                
-                ctx.beginPath();
-                const topCurveHeight = this.size * 0.3;
-                ctx.moveTo(0, topCurveHeight);
-                ctx.bezierCurveTo(0, 0, -this.size / 2, 0, -this.size / 2, topCurveHeight);
-                ctx.bezierCurveTo(-this.size / 2, (this.size + topCurveHeight) / 2, 0, this.size, 0, this.size);
-                ctx.bezierCurveTo(0, this.size, this.size / 2, (this.size + topCurveHeight) / 2, this.size / 2, topCurveHeight);
-                ctx.bezierCurveTo(this.size / 2, 0, 0, 0, 0, topCurveHeight);
-                ctx.closePath();
-                ctx.fill();
-                
-                ctx.restore();
-            }
-        }
-
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new HeartParticle());
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-            requestAnimationFrame(animateParticles);
-        }
-        
-        function createHeartBurst() {
-            for (let i = 0; i < 15; i++) {
-                const p = new HeartParticle();
-                p.y = canvas.height / 2;
-                p.x = canvas.width / 2;
-                p.speedY = (Math.random() - 0.5) * 5;
-                particles.push(p);
-            }
-        }
-
-        window.onload = function() {
-            animateParticles();
-        };
-    </script>
-</body>
-</html>
+                            <h3 class="font-bold text-slate-800">Razón #2</h3>
+                            <p class="text-xs text-slate-500 mt-1">Haz clic para voltear 🔄</
