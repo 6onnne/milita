@@ -34,7 +34,7 @@
             user-select: none;
         }
 
-        /* Quita márgenes y oculta barra de scroll */
+        /* Quita márgenes y oculta barra de scroll manteniendo desplazamiento */
         html, body {
             margin: 0 !important;
             padding: 0 !important;
@@ -65,7 +65,7 @@
             }
         }
 
-        /* Sombra / Borde blanco alrededor del texto para máxima legibilidad sobre el fondo */
+        /* Contorno blanco para legibilidad sobre el fondo */
         .text-outline-white {
             text-shadow: 
                 2px  2px 0px #ffffff,
@@ -73,6 +73,21 @@
                 2px -2px 0px #ffffff,
                -2px  2px 0px #ffffff,
                 0px  2px 4px rgba(255, 255, 255, 0.9);
+        }
+
+        /* Estilos de volteo 3D para tarjetas 2 y 3 */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
         }
 
         /* Canvas fijado al fondo */
@@ -107,7 +122,7 @@
         
         <!-- Hero Section -->
         <section class="max-w-3xl mx-auto px-4 pt-4 pb-8 text-center">
-            <!-- Foto del círculo (circulito.png) -->
+            <!-- Circulito (circulito.png) -->
             <div class="relative inline-block mb-6 animate-float">
                 <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white shadow-xl mx-auto bg-white/50">
                     <img id="hero-img" src="./circulito.png" 
@@ -119,12 +134,12 @@
                 </div>
             </div>
 
-            <!-- Título Principal con contorno blanco -->
+            <!-- Título Principal -->
             <h1 class="font-romantic text-4xl sm:text-6xl font-bold text-slate-900 mb-4 text-outline-white" id="hero-title">
                 Con mucho cariño, mi querida milita ❤️
             </h1>
 
-            <!-- Párrafo descriptivo con fondo de vidrio transparente para facilitar la lectura -->
+            <!-- Párrafo descriptivo con fondo de cristal -->
             <div class="max-w-lg mx-auto bg-white/60 backdrop-blur-md p-4 rounded-2xl border border-white/80 shadow-sm mb-6">
                 <p class="text-slate-800 text-sm sm:text-base font-medium leading-relaxed" id="hero-subtitle">
                     Hice este pequeño espacio para que nunca olvides lo mucho que te quiero y significas para mí. Estoy muy agradecido de que esto te pertenezca a ti y sólo a ti.
@@ -133,28 +148,29 @@
         </section>
 
         <!-- Tarjetas Interactivas -->
-        <section class="max-w-3xl mx-auto px-4 mb-14">
+        <section class="max-w-4xl mx-auto px-4 mb-14">
             <h2 class="text-center font-romantic text-3xl sm:text-4xl font-bold text-slate-900 mb-6 text-outline-white">
                 A Quesito también lo quiero ✨
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
                 
-                <!-- Tarjeta 1 (Interactiva de la Canción) -->
-                <div id="card-song" class="bg-sky-500 text-white rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 cursor-pointer hover:scale-105" onclick="toggleSongCard()">
-                    <!-- Vista Normal de la Tarjeta -->
-                    <div id="song-card-front" class="text-center py-6">
+                <!-- Tarjeta 1: Canción (Azul e interactiva) -->
+                <div id="card-song" onclick="toggleSongCard()" class="bg-sky-500 text-white rounded-2xl p-6 shadow-xl cursor-pointer hover:scale-105 transition-all duration-300 min-h-[220px] flex flex-col justify-center">
+                    <!-- Frente de la Tarjeta 1 -->
+                    <div id="song-card-front" class="text-center">
                         <i class="fa-solid fa-music text-3xl mb-3 animate-bounce"></i>
-                        <h3 class="font-bold text-xl mb-2">Me siento vivo, cuando estás conmigo</h3>
-                        <p class="text-xs opacity-90 mt-1">Presiona y descubre esta hermosa canción para ti</p>
+                        <h3 class="font-bold text-lg mb-2">Me siento vivo, cuando estás conmigo</h3>
+                        <p class="text-xs opacity-90">Presiona y descubre esta hermosa canción para ti</p>
                     </div>
 
-                    <!-- Vista Expandida Interactiva -->
-                    <div id="song-card-expanded" class="hidden space-y-4 text-center animate-fade-in">
+                    <!-- Contenido desplegado de la Tarjeta 1 -->
+                    <div id="song-card-expanded" class="hidden space-y-4 text-center">
                         <div class="flex justify-center">
                             <img id="gif-pompom" src="./pompom-besos.gif" alt="Pompompurin besos" class="w-24 h-24 object-contain rounded-xl shadow-md bg-white/20 p-1">
                         </div>
 
-                        <h3 class="font-sans font-bold text-xl text-white">Axel Fiks – Niño Amor</h3>
+                        <h3 class="font-sans font-bold text-lg text-white">Axel Fiks – Niño Amor</h3>
                         <p class="text-xs sm:text-sm font-light leading-relaxed">
                             No veo mejor forma de decirte las cosas que con una canción. Espero que esta melodía se haga tan especial para ti como tú lo eres para mí.
                         </p>
@@ -165,10 +181,192 @@
                     </div>
                 </div>
 
-                <!-- Tarjeta 2 (Normal) -->
-                <div class="perspective-1000 h-48 cursor-pointer group" onclick="flipCard(this)">
-                    <div class="relative w-full h-full duration-500 transform-style-3d group-hover:shadow-2xl rounded-2xl">
+                <!-- Tarjeta 2: Razón #2 -->
+                <div class="perspective-1000 min-h-[220px] cursor-pointer group" onclick="flipCard(this)">
+                    <div class="relative w-full h-full min-h-[220px] duration-500 transform-style-3d group-hover:shadow-2xl rounded-2xl">
                         <div class="absolute w-full h-full bg-white/70 backdrop-blur-md border border-white/80 rounded-2xl p-6 flex flex-col items-center justify-center text-center backface-hidden shadow-lg">
                             <i class="fa-solid fa-mug-hot text-3xl text-pink-500 mb-3"></i>
                             <h3 class="font-bold text-slate-800">Razón #2</h3>
-                            <p class="text-xs text-slate-500 mt-1">Haz clic para voltear 🔄</
+                            <p class="text-xs text-slate-500 mt-1">Haz clic para voltear 🔄</p>
+                        </div>
+                        <div class="absolute w-full h-full bg-pink-500 text-white rounded-2xl p-6 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden shadow-lg">
+                            <p class="text-sm font-medium">Tu forma de escuchar y dar los mejores abrazos del mundo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Razón #3 -->
+                <div class="perspective-1000 min-h-[220px] cursor-pointer group" onclick="flipCard(this)">
+                    <div class="relative w-full h-full min-h-[220px] duration-500 transform-style-3d group-hover:shadow-2xl rounded-2xl">
+                        <div class="absolute w-full h-full bg-white/70 backdrop-blur-md border border-white/80 rounded-2xl p-6 flex flex-col items-center justify-center text-center backface-hidden shadow-lg">
+                            <i class="fa-solid fa-star text-3xl text-pink-500 mb-3"></i>
+                            <h3 class="font-bold text-slate-800">Razón #3</h3>
+                            <p class="text-xs text-slate-500 mt-1">Haz clic para voltear 🔄</p>
+                        </div>
+                        <div class="absolute w-full h-full bg-pink-500 text-white rounded-2xl p-6 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden shadow-lg">
+                            <p class="text-sm font-medium">Simplemente por ser exactamente quien eres cuando estás conmigo.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <!-- Caja de Regalo Interactiva -->
+        <section class="max-w-xl mx-auto px-4 mb-16 text-center">
+            <div class="bg-white/50 backdrop-blur-md border border-white/70 rounded-3xl p-8 shadow-xl">
+                <h2 class="font-romantic text-3xl font-bold text-slate-900 mb-2">Una Sorpresa Para Ti</h2>
+                <p class="text-xs text-slate-600 mb-6 font-medium">Toca para abrir</p>
+
+                <div id="gift-box" onclick="openGift()" class="cursor-pointer inline-block transition-transform duration-300 hover:scale-110 active:scale-95">
+                    <div class="w-24 h-24 bg-sky-500 rounded-2xl flex items-center justify-center shadow-lg relative mx-auto border-2 border-sky-300">
+                        <i class="fa-solid fa-gift text-white text-5xl"></i>
+                    </div>
+                </div>
+
+                <div id="gift-reveal" class="hidden mt-6 space-y-4">
+                    <div class="bg-white/80 p-6 rounded-2xl border border-sky-200 shadow-inner">
+                        <p class="font-romantic text-2xl text-sky-600 mb-2 font-bold">¡Vale por 1 millón de besitos!</p>
+                        <p class="text-slate-600 text-sm">Válido hasta el 31/12/2026</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="relative z-10 text-center py-6 text-xs text-slate-600 font-medium border-t border-white/30 bg-white/30 backdrop-blur-sm">
+        <p>Hecho con mucho amor especialmente para ti • <span id="year"></span></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.getElementById('year').innerText = new Date().getFullYear();
+
+        // Función para abrir/cerrar tarjeta 1 (Canción)
+        function toggleSongCard() {
+            const front = document.getElementById('song-card-front');
+            const expanded = document.getElementById('song-card-expanded');
+            const gifImg = document.getElementById('gif-pompom');
+
+            if (front.classList.contains('hidden')) {
+                expanded.classList.add('hidden');
+                front.classList.remove('hidden');
+            } else {
+                front.classList.add('hidden');
+                expanded.classList.remove('hidden');
+                
+                // Reinicia gif para bucle continuo
+                if(gifImg) {
+                    const currentSrc = gifImg.src.split('?')[0];
+                    gifImg.src = currentSrc + '?t=' + new Date().getTime();
+                }
+            }
+        }
+
+        // Función para voltear tarjetas 2 y 3
+        function flipCard(card) {
+            const inner = card.querySelector('.transform-style-3d');
+            if (inner) inner.classList.toggle('rotate-y-180');
+        }
+
+        // Función para la caja de regalo
+        function openGift() {
+            const giftBox = document.getElementById('gift-box');
+            const giftReveal = document.getElementById('gift-reveal');
+
+            giftBox.classList.add('animate-bounce');
+            setTimeout(() => {
+                giftBox.classList.add('hidden');
+                giftReveal.classList.remove('hidden');
+                createHeartBurst();
+            }, 600);
+        }
+
+        /* Corazones Flotantes */
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const particles = [];
+        const particleCount = 25;
+
+        class HeartParticle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 100;
+                this.size = Math.random() * 12 + 8;
+                this.speedY = Math.random() * 1 + 0.5;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.angle = Math.random() * 360;
+                this.spin = Math.random() * 0.02 - 0.01;
+            }
+
+            update() {
+                this.y -= this.speedY;
+                this.angle += this.spin;
+                if (this.y < -20) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = "#f43f5e";
+                
+                ctx.beginPath();
+                const topCurveHeight = this.size * 0.3;
+                ctx.moveTo(0, topCurveHeight);
+                ctx.bezierCurveTo(0, 0, -this.size / 2, 0, -this.size / 2, topCurveHeight);
+                ctx.bezierCurveTo(-this.size / 2, (this.size + topCurveHeight) / 2, 0, this.size, 0, this.size);
+                ctx.bezierCurveTo(0, this.size, this.size / 2, (this.size + topCurveHeight) / 2, this.size / 2, topCurveHeight);
+                ctx.bezierCurveTo(this.size / 2, 0, 0, 0, 0, topCurveHeight);
+                ctx.closePath();
+                ctx.fill();
+                
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new HeartParticle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        
+        function createHeartBurst() {
+            for (let i = 0; i < 15; i++) {
+                const p = new HeartParticle();
+                p.y = canvas.height / 2;
+                p.x = canvas.width / 2;
+                p.speedY = (Math.random() - 0.5) * 5;
+                particles.push(p);
+            }
+        }
+
+        window.onload = function() {
+            animateParticles();
+        };
+    </script>
+</body>
+</html>
