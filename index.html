@@ -63,18 +63,23 @@
             display: none;
         }
 
-        /* Para Celulares (Optimizado para nitidez en móviles) */
-        body {
+        /* Fondo Fijo Multidispositivo sin cortes ni deformaciones */
+        #bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
             background-image: url('./fondo-celuu.jpg');
             background-size: cover;
-            background-position: center center;
+            background-position: center;
             background-repeat: no-repeat;
-            min-height: 100vh;
         }
 
         /* Para Computadores */
         @media (min-width: 768px) {
-            body {
+            #bg-overlay {
                 background-image: url('./fondo-compuu.png');
             }
         }
@@ -117,6 +122,9 @@
     </style>
 </head>
 <body class="min-h-full flex flex-col justify-between text-slate-800">
+
+    <!-- Capa de Fondo Fija -->
+    <div id="bg-overlay"></div>
 
     <!-- Canvas para corazones flotantes -->
     <canvas id="particles-canvas"></canvas>
