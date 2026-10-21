@@ -109,50 +109,6 @@
             </p>
         </section>
 
-        <!-- SECCIÓN DE BOTONES INTERACTIVOS -->
-        <div id="botones-contenedor" class="flex flex-col items-center gap-4 mb-10 max-w-xl mx-auto px-4">
-            
-            <!-- Botón 1: Canción Dedicatoria (Desplegable) -->
-            <div class="w-full">
-                <button onclick="toggleSection('song-dropdown')" class="w-full bg-white/60 hover:bg-white/80 backdrop-blur-md border border-white/80 text-slate-700 font-bold py-3.5 px-6 rounded-2xl shadow-lg transition-all duration-300 flex items-center justify-between group">
-                    <span class="flex items-center gap-3 font-romantic text-2xl text-pink-600">
-                        <i class="fa-solid fa-music text-pink-500"></i> Nuestra Canción
-                    </span>
-                    <i id="song-icon" class="fa-solid fa-chevron-down text-pink-500 transition-transform duration-300"></i>
-                </button>
-
-                <!-- Contenido desplegable del Botón 1 -->
-                <div id="song-dropdown" class="hidden mt-3 bg-white/70 backdrop-blur-md border border-white/80 rounded-2xl p-6 shadow-xl transition-all duration-500 text-center space-y-4">
-                    <!-- Gif de Pompompurin bailando -->
-                    <div class="flex justify-center">
-                        <img src="https://media1.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Pompompurin tierno" class="w-24 h-24 object-contain rounded-xl shadow-sm">
-                    </div>
-                    
-                    <h3 class="font-romantic text-3xl font-bold text-pink-600">Niño Amor - Axel Fiks</h3>
-                    <p class="text-slate-600 text-sm italic">
-                        "Me siento una cosa clara en el cuerpo, creo que él se llama amor..."
-                    </p>
-
-                    <!-- Reproductor de video de YouTube embebido -->
-                    <div class="relative w-full pt-[56.25%] rounded-xl overflow-hidden shadow-md">
-                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/rxbQEWEGDCU" title="AXEL FIKS - NIÑO AMOR" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-
-                    <p class="text-xs text-slate-500">Puedes encontrar la letra completa buscando la canción en Google.</p>
-                </div>
-            </div>
-
-            <!-- Aquí dejaremos listos los espacios para los próximos 2 botones -->
-            <div class="w-full flex gap-4">
-                <button class="flex-1 bg-white/50 hover:bg-white/70 backdrop-blur-md border border-white/80 text-slate-700 font-semibold py-3 px-4 rounded-2xl shadow-md transition-all">
-                    ✨ Próxima función
-                </button>
-                <button class="flex-1 bg-white/50 hover:bg-white/70 backdrop-blur-md border border-white/80 text-slate-700 font-semibold py-3 px-4 rounded-2xl shadow-md transition-all">
-                    💌 Próxima función
-                </button>
-            </div>
-        </div>
-
         <!-- Tarjetas Interactivas -->
         <section class="max-w-3xl mx-auto px-4 mb-14">
             <h2 class="text-center font-romantic text-3xl font-bold text-slate-800 mb-6">
@@ -160,21 +116,37 @@
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
-                <!-- Tarjeta 1 -->
-                <div class="perspective-1000 h-48 cursor-pointer group" onclick="flipCard(this)">
-                    <div class="relative w-full h-full duration-500 transform-style-3d group-hover:shadow-2xl rounded-2xl">
-                        <div class="absolute w-full h-full bg-white/60 backdrop-blur-md border border-white/80 rounded-2xl p-6 flex flex-col items-center justify-center text-center backface-hidden shadow-lg">
-                            <i class="fa-solid fa-face-smile-beam text-3xl text-pink-500 mb-3"></i>
-                            <h3 class="font-bold text-slate-700">Razón #1</h3>
-                            <p class="text-xs text-slate-500 mt-1">Haz clic para voltear 🔄</p>
+                <!-- Tarjeta 1 (Interactiva de la Canción con tu Gif y diseño azul) -->
+                <div id="card-song" class="bg-sky-500 text-white rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 cursor-pointer hover:scale-105" onclick="toggleSongCard()">
+                    <!-- Vista Normal de la Tarjeta -->
+                    <div id="song-card-front" class="text-center py-6">
+                        <i class="fa-solid fa-music text-3xl mb-3 animate-bounce"></i>
+                        <h3 class="font-bold text-xl mb-2">Nuestra Canción 🎵</h3>
+                        <p class="text-xs opacity-90 mt-1">Haz clic para descubrir tu sorpresa</p>
+                    </div>
+
+                    <!-- Vista Expandida Interactiva (Oculta al inicio) -->
+                    <div id="song-card-expanded" class="hidden space-y-4 text-center animate-fade-in">
+                        <!-- Tu gif personalizado -->
+                        <div class="flex justify-center">
+                            <img src="./pompom-besos.gif" alt="Pompompurin besos" class="w-24 h-24 object-contain rounded-xl shadow-md bg-white/20 p-1">
                         </div>
-                        <div class="absolute w-full h-full bg-pink-500 text-white rounded-2xl p-6 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden shadow-lg">
-                            <p class="text-sm font-medium">Tu sonrisa ilumina cualquier día gris por más difícil que parezca.</p>
+
+                        <h3 class="font-romantic text-2xl font-bold">Axel Fiks - Niño Amor</h3>
+                        <p class="text-xs sm:text-sm font-light leading-relaxed">
+                            No veo mejor forma de decirte las cosas que con una canción. Espero que esta melodía se haga tan especial para ti como tú lo eres para mí.
+                        </p>
+
+                        <!-- Reproductor de YouTube -->
+                        <div class="relative w-full pt-[56.25%] rounded-xl overflow-hidden shadow-md">
+                            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/rxbQEWEGDCU" title="AXEL FIKS - NIÑO AMOR" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
+
+                        <p class="text-[10px] opacity-75">Haz clic de nuevo para contraer</p>
                     </div>
                 </div>
 
-                <!-- Tarjeta 2 -->
+                <!-- Tarjeta 2 (Normal) -->
                 <div class="perspective-1000 h-48 cursor-pointer group" onclick="flipCard(this)">
                     <div class="relative w-full h-full duration-500 transform-style-3d group-hover:shadow-2xl rounded-2xl">
                         <div class="absolute w-full h-full bg-white/60 backdrop-blur-md border border-white/80 rounded-2xl p-6 flex flex-col items-center justify-center text-center backface-hidden shadow-lg">
@@ -188,7 +160,7 @@
                     </div>
                 </div>
 
-                <!-- Tarjeta 3 -->
+                <!-- Tarjeta 3 (Normal) -->
                 <div class="perspective-1000 h-48 cursor-pointer group" onclick="flipCard(this)">
                     <div class="relative w-full h-full duration-500 transform-style-3d group-hover:shadow-2xl rounded-2xl">
                         <div class="absolute w-full h-full bg-white/60 backdrop-blur-md border border-white/80 rounded-2xl p-6 flex flex-col items-center justify-center text-center backface-hidden shadow-lg">
@@ -236,17 +208,22 @@
     <script>
         document.getElementById('year').innerText = new Date().getFullYear();
 
-        // Función para abrir/cerrar secciones desplegables con animación de flecha
-        function toggleSection(sectionId) {
-            const dropdown = document.getElementById(sectionId);
-            const icon = document.getElementById('song-icon');
-            
-            if (dropdown.classList.contains('hidden')) {
-                dropdown.classList.remove('hidden');
-                icon.style.transform = 'rotate(180deg)';
+        // Función para expandir la primera tarjeta con la canción y el gif
+        function toggleSongCard() {
+            const card = document.getElementById('card-song');
+            const front = document.getElementById('song-card-front');
+            const expanded = document.getElementById('song-card-expanded');
+
+            if (front.classList.contains('hidden')) {
+                // Contraer de vuelta
+                expanded.classList.add('hidden');
+                front.classList.remove('hidden');
+                card.classList.remove('h-auto');
             } else {
-                dropdown.classList.add('hidden');
-                icon.style.transform = 'rotate(0deg)';
+                // Expandir
+                front.classList.add('hidden');
+                expanded.classList.remove('hidden');
+                card.classList.add('h-auto');
             }
         }
 
