@@ -27,21 +27,21 @@
     </script>
     
     <style>
-        /* Quita márgenes y elimina la barra de scroll visual manteniendo el desplazamiento */
+        /* Quita márgenes y oculta barra de scroll manteniendo el desplazamiento */
         html, body {
             margin: 0 !important;
             padding: 0 !important;
             width: 100%;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE/Edge */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
 
         html::-webkit-scrollbar,
         body::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
+            display: none;
         }
 
-        /* Fondo para Celulares y pantallas pequeñas */
+        /* Fondo para Celulares */
         body {
             background-image: url('./fondo-celu.jpg');
             background-size: cover;
@@ -51,14 +51,14 @@
             min-height: 100vh;
         }
 
-        /* Fondo para Computadores / Laptops con doble 'u' (fondo-compuu.png) */
+        /* Fondo para Computadores */
         @media (min-width: 768px) {
             body {
                 background-image: url('./fondo-compuu.png');
             }
         }
 
-        /* Canvas fijado al fondo sin empujar el contenido */
+        /* Canvas fijado al fondo */
         #particles-canvas {
             position: fixed;
             top: 0;
@@ -66,19 +66,19 @@
             width: 100vw;
             height: 100vh;
             pointer-events: none;
-            z-10: 1;
+            z-index: 1;
         }
     </style>
 </head>
 <body class="min-h-full flex flex-col justify-between text-slate-800">
 
-    <!-- Canvas para corazones flotantes (fijado en el fondo) -->
+    <!-- Canvas para corazones flotantes -->
     <canvas id="particles-canvas"></canvas>
 
     <!-- Contenido Principal -->
     <div class="relative z-10 flex-grow">
         
-        <!-- Header superior con el texto actualizado y buena mayúscula -->
+        <!-- Header superior -->
         <header class="max-w-4xl mx-auto p-4 flex justify-center sm:justify-start items-center">
             <div class="flex items-center space-x-2 bg-white/50 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/70 shadow-sm">
                 <i class="fa-solid fa-heart text-pink-500 text-lg animate-pulse"></i>
@@ -88,9 +88,8 @@
             </div>
         </header>
         
-        <!-- Hero Section / Presentación -->
+        <!-- Hero Section -->
         <section class="max-w-3xl mx-auto px-4 pt-4 pb-8 text-center">
-            <!-- Foto de perfil -->
             <div class="relative inline-block mb-6 animate-float">
                 <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white shadow-xl mx-auto">
                     <img id="hero-img" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80" 
@@ -102,7 +101,6 @@
                 </div>
             </div>
 
-            <!-- Título y mensaje principal -->
             <h1 class="font-romantic text-4xl sm:text-6xl font-bold text-slate-800 mb-3 drop-shadow-sm" id="hero-title">
                 Con mucho cariño, mi querida milita ❤️
             </h1>
@@ -111,8 +109,48 @@
             </p>
         </section>
 
-        <!-- Espacio reservado para los botones con distintas funciones -->
-        <div id="botones-contenedor" class="flex flex-wrap justify-center gap-4 mb-10 max-w-3xl mx-auto px-4">
+        <!-- SECCIÓN DE BOTONES INTERACTIVOS -->
+        <div id="botones-contenedor" class="flex flex-col items-center gap-4 mb-10 max-w-xl mx-auto px-4">
+            
+            <!-- Botón 1: Canción Dedicatoria (Desplegable) -->
+            <div class="w-full">
+                <button onclick="toggleSection('song-dropdown')" class="w-full bg-white/60 hover:bg-white/80 backdrop-blur-md border border-white/80 text-slate-700 font-bold py-3.5 px-6 rounded-2xl shadow-lg transition-all duration-300 flex items-center justify-between group">
+                    <span class="flex items-center gap-3 font-romantic text-2xl text-pink-600">
+                        <i class="fa-solid fa-music text-pink-500"></i> Nuestra Canción
+                    </span>
+                    <i id="song-icon" class="fa-solid fa-chevron-down text-pink-500 transition-transform duration-300"></i>
+                </button>
+
+                <!-- Contenido desplegable del Botón 1 -->
+                <div id="song-dropdown" class="hidden mt-3 bg-white/70 backdrop-blur-md border border-white/80 rounded-2xl p-6 shadow-xl transition-all duration-500 text-center space-y-4">
+                    <!-- Gif de Pompompurin bailando -->
+                    <div class="flex justify-center">
+                        <img src="https://media1.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Pompompurin tierno" class="w-24 h-24 object-contain rounded-xl shadow-sm">
+                    </div>
+                    
+                    <h3 class="font-romantic text-3xl font-bold text-pink-600">Niño Amor - Axel Fiks</h3>
+                    <p class="text-slate-600 text-sm italic">
+                        "Me siento una cosa clara en el cuerpo, creo que él se llama amor..."
+                    </p>
+
+                    <!-- Reproductor de video de YouTube embebido -->
+                    <div class="relative w-full pt-[56.25%] rounded-xl overflow-hidden shadow-md">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/rxbQEWEGDCU" title="AXEL FIKS - NIÑO AMOR" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+
+                    <p class="text-xs text-slate-500">Puedes encontrar la letra completa buscando la canción en Google.</p>
+                </div>
+            </div>
+
+            <!-- Aquí dejaremos listos los espacios para los próximos 2 botones -->
+            <div class="w-full flex gap-4">
+                <button class="flex-1 bg-white/50 hover:bg-white/70 backdrop-blur-md border border-white/80 text-slate-700 font-semibold py-3 px-4 rounded-2xl shadow-md transition-all">
+                    ✨ Próxima función
+                </button>
+                <button class="flex-1 bg-white/50 hover:bg-white/70 backdrop-blur-md border border-white/80 text-slate-700 font-semibold py-3 px-4 rounded-2xl shadow-md transition-all">
+                    💌 Próxima función
+                </button>
+            </div>
         </div>
 
         <!-- Tarjetas Interactivas -->
@@ -158,4 +196,161 @@
                             <h3 class="font-bold text-slate-700">Razón #3</h3>
                             <p class="text-xs text-slate-500 mt-1">Haz clic para voltear 🔄</p>
                         </div>
-                        <div class="absolute w-full h
+                        <div class="absolute w-full h-full bg-pink-500 text-white rounded-2xl p-6 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden shadow-lg">
+                            <p class="text-sm font-medium">Simplemente por ser exactamente quien eres cuando estás conmigo.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <!-- Caja de Regalo Interactiva -->
+        <section class="max-w-xl mx-auto px-4 mb-16 text-center">
+            <div class="bg-white/40 backdrop-blur-md border border-white/60 rounded-3xl p-8 shadow-xl">
+                <h2 class="font-romantic text-3xl font-bold text-slate-800 mb-2">Una Sorpresa Para Ti</h2>
+                <p class="text-xs text-slate-600 mb-6">Toca para abrir</p>
+
+                <div id="gift-box" onclick="openGift()" class="cursor-pointer inline-block transition-transform duration-300 hover:scale-110 active:scale-95">
+                    <div class="w-24 h-24 bg-sky-500 rounded-2xl flex items-center justify-center shadow-lg relative mx-auto border-2 border-sky-300">
+                        <i class="fa-solid fa-gift text-white text-5xl"></i>
+                    </div>
+                </div>
+
+                <div id="gift-reveal" class="hidden mt-6 space-y-4 animate-fade-in">
+                    <div class="bg-white/80 p-6 rounded-2xl border border-sky-200 shadow-inner">
+                        <p class="font-romantic text-2xl text-sky-600 mb-2 font-bold">¡Vale por 1 millón de besitos!</p>
+                        <p class="text-slate-600 text-sm">Válido hasta el 31/12/2026</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer sencillo -->
+    <footer class="relative z-10 text-center py-6 text-xs text-slate-500 border-t border-white/20">
+        <p>Hecho con mucho amor especialmente para ti • <span id="year"></span></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.getElementById('year').innerText = new Date().getFullYear();
+
+        // Función para abrir/cerrar secciones desplegables con animación de flecha
+        function toggleSection(sectionId) {
+            const dropdown = document.getElementById(sectionId);
+            const icon = document.getElementById('song-icon');
+            
+            if (dropdown.classList.contains('hidden')) {
+                dropdown.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                dropdown.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function flipCard(card) {
+            const inner = card.querySelector('.transform-style-3d');
+            if (inner) inner.classList.toggle('rotate-y-180');
+        }
+
+        function openGift() {
+            const giftBox = document.getElementById('gift-box');
+            const giftReveal = document.getElementById('gift-reveal');
+
+            giftBox.classList.add('animate-bounce');
+            setTimeout(() => {
+                giftBox.classList.add('hidden');
+                giftReveal.classList.remove('hidden');
+                createHeartBurst();
+            }, 600);
+        }
+
+        /* Animación de Corazones Flotantes */
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const particles = [];
+        const particleCount = 25;
+
+        class HeartParticle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 100;
+                this.size = Math.random() * 12 + 8;
+                this.speedY = Math.random() * 1 + 0.5;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.angle = Math.random() * 360;
+                this.spin = Math.random() * 0.02 - 0.01;
+            }
+
+            update() {
+                this.y -= this.speedY;
+                this.angle += this.spin;
+                if (this.y < -20) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = "#f43f5e";
+                
+                ctx.beginPath();
+                const topCurveHeight = this.size * 0.3;
+                ctx.moveTo(0, topCurveHeight);
+                ctx.bezierCurveTo(0, 0, -this.size / 2, 0, -this.size / 2, topCurveHeight);
+                ctx.bezierCurveTo(-this.size / 2, (this.size + topCurveHeight) / 2, 0, this.size, 0, this.size);
+                ctx.bezierCurveTo(0, this.size, this.size / 2, (this.size + topCurveHeight) / 2, this.size / 2, topCurveHeight);
+                ctx.bezierCurveTo(this.size / 2, 0, 0, 0, 0, topCurveHeight);
+                ctx.closePath();
+                ctx.fill();
+                
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new HeartParticle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        
+        function createHeartBurst() {
+            for (let i = 0; i < 15; i++) {
+                const p = new HeartParticle();
+                p.y = canvas.height / 2;
+                p.x = canvas.width / 2;
+                p.speedY = (Math.random() - 0.5) * 5;
+                particles.push(p);
+            }
+        }
+
+        window.onload = function() {
+            animateParticles();
+        };
+    </script>
+</body>
+</html>
