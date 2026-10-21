@@ -116,23 +116,24 @@
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
-                <!-- Tarjeta 1 (Interactiva de la Canción con tu Gif y diseño azul) -->
+                <!-- Tarjeta 1 (Interactiva de la Canción) -->
                 <div id="card-song" class="bg-sky-500 text-white rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 cursor-pointer hover:scale-105" onclick="toggleSongCard()">
                     <!-- Vista Normal de la Tarjeta -->
                     <div id="song-card-front" class="text-center py-6">
                         <i class="fa-solid fa-music text-3xl mb-3 animate-bounce"></i>
-                        <h3 class="font-bold text-xl mb-2">Nuestra Canción 🎵</h3>
-                        <p class="text-xs opacity-90 mt-1">Haz clic para descubrir tu sorpresa</p>
+                        <h3 class="font-bold text-xl mb-2">Me siento vivo, cuando estás conmigo</h3>
+                        <p class="text-xs opacity-90 mt-1">Presiona y descubre esta hermosa canción para ti</p>
                     </div>
 
                     <!-- Vista Expandida Interactiva (Oculta al inicio) -->
                     <div id="song-card-expanded" class="hidden space-y-4 text-center animate-fade-in">
-                        <!-- Tu gif personalizado -->
+                        <!-- Gif en loop -->
                         <div class="flex justify-center">
                             <img src="./pompom-besos.gif" alt="Pompompurin besos" class="w-24 h-24 object-contain rounded-xl shadow-md bg-white/20 p-1">
                         </div>
 
-                        <h3 class="font-romantic text-2xl font-bold">Axel Fiks - Niño Amor</h3>
+                        <!-- Título con tipografía más simple y limpia -->
+                        <h3 class="font-sans font-bold text-xl text-white">Axel Fiks – Niño Amor</h3>
                         <p class="text-xs sm:text-sm font-light leading-relaxed">
                             No veo mejor forma de decirte las cosas que con una canción. Espero que esta melodía se haga tan especial para ti como tú lo eres para mí.
                         </p>
@@ -141,8 +142,6 @@
                         <div class="relative w-full pt-[56.25%] rounded-xl overflow-hidden shadow-md">
                             <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/rxbQEWEGDCU" title="AXEL FIKS - NIÑO AMOR" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
-
-                        <p class="text-[10px] opacity-75">Haz clic de nuevo para contraer</p>
                     </div>
                 </div>
 
@@ -208,19 +207,17 @@
     <script>
         document.getElementById('year').innerText = new Date().getFullYear();
 
-        // Función para expandir la primera tarjeta con la canción y el gif
+        // Función para expandir/contraer la tarjeta de la canción
         function toggleSongCard() {
             const card = document.getElementById('card-song');
             const front = document.getElementById('song-card-front');
             const expanded = document.getElementById('song-card-expanded');
 
             if (front.classList.contains('hidden')) {
-                // Contraer de vuelta
                 expanded.classList.add('hidden');
                 front.classList.remove('hidden');
                 card.classList.remove('h-auto');
             } else {
-                // Expandir
                 front.classList.add('hidden');
                 expanded.classList.remove('hidden');
                 card.classList.add('h-auto');
@@ -315,7 +312,7 @@
             requestAnimationFrame(animateParticles);
         }
         
-        function createHeartBurst() {
+        function createHeartDropBurst() {
             for (let i = 0; i < 15; i++) {
                 const p = new HeartParticle();
                 p.y = canvas.height / 2;
